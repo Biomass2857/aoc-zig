@@ -17,20 +17,16 @@ pub fn main() !void {
     var list2 = std.ArrayList(i32).init(allocator);
     defer list2.deinit();
 
-    while (true) {
-        if (lines.next()) |line| {
-            var values = std.mem.splitSequence(u8, line, "   ");
-            const val1_str = std.mem.trim(u8, values.next().?, "\t\n ");
-            const val2_str = std.mem.trim(u8, values.next().?, "\t\n ");
+    while (lines.next()) |line| {
+        var values = std.mem.splitSequence(u8, line, "   ");
+        const val1_str = std.mem.trim(u8, values.next().?, "\t\n ");
+        const val2_str = std.mem.trim(u8, values.next().?, "\t\n ");
 
-            const val1 = try std.fmt.parseInt(i32, val1_str, 10);
-            const val2 = try std.fmt.parseInt(i32, val2_str, 10);
+        const val1 = try std.fmt.parseInt(i32, val1_str, 10);
+        const val2 = try std.fmt.parseInt(i32, val2_str, 10);
 
-            try list1.append(val1);
-            try list2.append(val2);
-        } else {
-            break;
-        }
+        try list1.append(val1);
+        try list2.append(val2);
     }
 
     std.mem.sort(i32, list1.items, {}, std.sort.asc(i32));
