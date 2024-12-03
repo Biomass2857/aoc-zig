@@ -2,7 +2,7 @@ const std = @import("std");
 
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
-    const file_path = "input.txt";
+    const file_path = "input01.txt";
 
     const file = try std.fs.cwd().openFile(file_path, .{ .mode = .read_only });
 
